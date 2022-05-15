@@ -5,7 +5,7 @@
   "fitbit": {
     "appUUID": "b399198c-8d99-453a-a960-287fbe170a6f",
     "appType": "app",
-    "appDisplayName": "simple-versa2-timer",
+    "appDisplayName": "Timer",
     "iconFile": "resources/icon.png",
     "wipeColor": "#ff9800",
     "requestedPermissions": [],
@@ -14,7 +14,7 @@
     ],
     "i18n": {
       "en-US": {
-        "name": " simple-versa2-timer"
+        "name": "Timer"
       }
     },
     "defaultLanguage": "en-US"
