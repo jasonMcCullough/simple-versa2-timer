@@ -4,6 +4,9 @@ import { vibration } from "haptics";
 import * as document from "document";
 import { preferences } from "user-settings";
 import { me as device } from "device";
+import { settingsStorage } from "settings";
+import * as messaging from "messaging";
+
 import * as util from "../common/utils";
 
 const myLabel = document.getElementById("myLabel");
@@ -14,8 +17,8 @@ const button = document.getElementById("button");
 const pauseBtn = document.getElementById("pause");
 const resetBtn = document.getElementById("reset");
 
-// TODO: Make this configurable!
-const startTime = 60;
+// Default to 60 seconds
+var startTime = 60;
 
 var currentTime = startTime;
 var timerStarted = false;
@@ -26,14 +29,22 @@ var expected = Date.now() + interval;
 pauseBtn.style.display = "none";
 resetBtn.style.display = "none";
 
+// Retrieve the duration value from the companian
+messaging.peerSocket.onmessage = function(evt) {
+  startTime = parseInt(evt.data.value);
+}
+
 console.log(`Model name:       ${device.modelName}`);
 console.log(`Firmware version: ${device.firmwareVersion}`);
 console.log(`Screen dimensions: ${device.screen.width} x ${device.screen.height}`);
 
+// Display initial timer value on startup 
+myTimer.text = startTime;
 setTimeout(step, interval);
+
 function step() {
   // The drift
-  var dt = Date.now() - expected; 
+  var dt = Date.now() - expected;
   
   button.onactivate = function(evt) {
     if (button.text == "Start Timer") {
@@ -58,6 +69,7 @@ function step() {
       timerStarted = false;
       pauseBtn.text = "Cont.";
       pauseBtn.style.fill = "green";
+      
     } else if (pauseBtn.text == "Cont.") {
       timerStarted = true;
       pauseBtn.text = "Pause";
