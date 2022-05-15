@@ -1,0 +1,9 @@
+<svg class="background">
+  <text id="myLabel" y="150"/>
+  <text id="myTimer" y="150"/>
+  <use id="button" href="#push-button" y="210" height="80" fill="fb-green" font-family="System-Regular" font-size="50">
+    <set href="#text" attributeName="text-buffer" to="Start Timer" />
+    <set href="#text" attributeName="fill" to="fb-white" />
+    <set href="#text" attributeName="y" to="20" />
+  </use> 
+</svg>
