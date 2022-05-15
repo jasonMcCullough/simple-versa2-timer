@@ -30,6 +30,9 @@ console.log(`Model name:       ${device.modelName}`);
 console.log(`Firmware version: ${device.firmwareVersion}`);
 console.log(`Screen dimensions: ${device.screen.width} x ${device.screen.height}`);
 
+// Display initial timer value on startup 
+myTimer.text = startTime;
+
 setTimeout(step, interval);
 function step() {
   // The drift
